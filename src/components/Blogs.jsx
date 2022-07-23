@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 export default function Blogs() {
 	const [blogs, setBlogs] = useState([]);
@@ -24,58 +25,90 @@ export default function Blogs() {
 			});
 	}, []);
 	return (
-		<div>
-			<Typography
-				sx={{ fontSize: 14 }}
-				color='text.secondary'
-				gutterBottom>
-				<h1>Blogs</h1>
-			</Typography>
-			{/* <h1>Blogs</h1> */}
-			<a href='/login'>Create Blog</a>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'row',
+		<div style={{ padding: '10px' }}>
+			<Paper
+				elevation={3}
+				sx={{
+					padding: '15px',
+					backgroundColor: '#AFD7FF',
 				}}>
-				{blogs.map((blog) => {
-					return (
-						<Card
-							sx={{
-								marginTop: '5px',
-								marginLeft: '5px',
-								marginRight: '5px',
-								// width: 275,
-								width: '100%',
-								height: 300,
-							}}>
-							<CardContent
-							// sx={{
-							// 	display: 'flex',
-							// 	flexDirection: 'column',
-							// 	// overflow: 'wrap',
-							// }}
-							>
-								<Typography
-									variant='h4'
-									component='h4'>
-									{blog.title}
-								</Typography>
-								<Typography
-									variant='h5'
-									component='h5'>
-									{blog.createdBy}
-								</Typography>
-								<Typography
-									variant='body2'
-									component='p'>
-									{blog.body}
-								</Typography>
-							</CardContent>
-						</Card>
-					);
-				})}
-			</div>
+				<div
+					style={{
+						display: 'flex',
+
+						justifyContent: 'center',
+					}}>
+					<Typography
+						sx={{ fontSize: 14 }}
+						color='text.secondary'
+						gutterBottom>
+						<h1>Blogs</h1>
+					</Typography>
+				</div>
+				{/* <h1>Blogs</h1> */}
+				<div
+					style={{
+						display: 'flex',
+
+						justifyContent: 'center',
+					}}>
+					<a href='/login'>Create Blog</a>
+				</div>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						flexWrap: 'wrap',
+						justifyContent: 'center',
+					}}>
+					{blogs.map((blog) => {
+						return (
+							<Card
+								sx={{
+									marginTop: '5px',
+									marginLeft: '5px',
+									marginRight: '5px',
+									width: 275,
+									// width: '100%',
+									height: 300,
+									backgroundColor: '#24ACD5',
+								}}>
+								<CardContent
+								// sx={{
+								// 	display: 'flex',
+								// 	flexDirection: 'column',
+								// 	// overflow: 'wrap',
+								// }}
+								>
+									<Typography
+										variant='h4'
+										component='h4'>
+										{blog.title}
+									</Typography>
+									<Typography
+										variant='h5'
+										component='h5'>
+										{blog.createdBy}
+									</Typography>
+									<Typography
+										variant='body2'
+										component='p'
+										sx={{
+											wordWrap: 'break-word',
+										}}>
+										{/* <div
+										style={{
+											wordWrap: 'break-word',
+										}}> */}
+										{blog.body}
+										{/* </div> */}
+									</Typography>
+								</CardContent>
+							</Card>
+						);
+					})}
+				</div>
+			</Paper>
 		</div>
 	);
 }

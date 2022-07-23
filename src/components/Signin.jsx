@@ -2,6 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
+// import Alert from '@mui/material/Alert';
+// import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
 
 export default function Signin() {
 	const [email, setEmail] = useState('');
@@ -37,35 +42,98 @@ export default function Signin() {
 	};
 
 	return (
-		<div>
-			<h1>Signin</h1>
-			<form>
-				<label>Email</label>
-				<input
-					type='email'
-					value={email}
-					onChange={(e) =>
-						setEmail(e.target.value)
-					}
-				/>
-				<label>Password</label>
-				<input
-					type='password'
-					value={password}
-					onChange={(e) =>
-						setPassword(e.target.value)
-					}
-				/>
-				<Button
-					type='submit'
-					onClick={handleSubmit}
-					variant='contained'>
-					Signin
-				</Button>
-				<a href='/signup'>
-					Dont Have an account?
-				</a>
-			</form>
-		</div>
+		// <div>
+		<Box
+			sx={{
+				display: 'flex',
+				flexWrap: 'wrap',
+				justifyContent: 'center',
+				alignItems: 'center',
+				marginTop: '30px',
+			}}>
+			<Paper
+				elevation={3}
+				sx={{
+					display: 'flex',
+					flexDirection: 'column',
+					minWidth: '300px',
+					height: '400px',
+					padding: '20px',
+					backgroundColor: '#DAF1F8',
+				}}>
+				<h1>Signin</h1>
+				<form>
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							// alignItems: 'center',
+						}}>
+						{/* <label>Email</label> */}
+						{/* <input
+							type='email'
+							value={email}
+							onChange={(e) =>
+								setEmail(e.target.value)
+							}
+						/> */}
+						<TextField
+							id='outlined-basic'
+							label='Email'
+							variant='outlined'
+							value={email}
+							onChange={(e) =>
+								setEmail(e.target.value)
+							}
+							sx={{
+								marginTop: '10px',
+								backgroundColor: 'White',
+							}}
+						/>
+						{/* <label>Password</label> */}
+						{/* <input
+							type='password'
+							value={password}
+							onChange={(e) =>
+								setPassword(e.target.value)
+							}
+						/> */}
+						<TextField
+							id='outlined-password-input'
+							label='Password'
+							type='password'
+							value={password}
+							onChange={(e) =>
+								setPassword(e.target.value)
+							}
+							variant='outlined'
+							sx={{
+								marginTop: '10px',
+								marginBottom: '10px',
+								backgroundColor: 'White',
+							}}
+						/>
+						<Button
+							type='submit'
+							onClick={handleSubmit}
+							variant='contained'>
+							Signin
+						</Button>
+						<div
+							style={{
+								display: 'flex',
+
+								justifyContent: 'center',
+								marginTop: '50px',
+							}}>
+							<a href='/signup'>
+								Dont Have an account?
+							</a>
+						</div>
+					</div>
+				</form>
+			</Paper>
+		</Box>
+		// </div>
 	);
 }
