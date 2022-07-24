@@ -97,13 +97,13 @@ export default function Blogs() {
 										sx={{
 											wordWrap: 'break-word',
 										}}>
-										<div
+										{/* <div
 											style={{
 												overflow: 'hidden',
 												overflowY: 'scroll',
-											}}>
-											{blog.body}
-										</div>
+											}}> */}
+										{blog.body}
+										{/* </div> */}
 									</Typography>
 								</CardContent>
 							</Card>
