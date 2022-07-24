@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
-// import Alert from '@mui/material/Alert';
-// import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -11,8 +12,39 @@ import TextField from '@mui/material/TextField';
 export default function Signin() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	// const [item, setItem] = useState([]);
-	// const [name, setName] = useState('');
+	const [open, setOpen] = React.useState(false);
+
+	const handleClose = (event, reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+
+		setOpen(false);
+	};
+
+	const makeClear = () => {
+		setEmail('');
+		setPassword('');
+		setOpen(false);
+	};
+
+	const action = (
+		<React.Fragment>
+			<Button
+				color='secondary'
+				size='small'
+				onClick={makeClear}>
+				UNDO
+			</Button>
+			<IconButton
+				size='small'
+				aria-label='close'
+				color='inherit'
+				onClick={handleClose}>
+				<CloseIcon fontSize='small' />
+			</IconButton>
+		</React.Fragment>
+	);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -34,7 +66,8 @@ export default function Signin() {
 				);
 				window.location.href = '/create';
 			} else {
-				return alert(res.data.message);
+				return setOpen(true);
+				// alert(res.data.message);
 			}
 		} catch (error) {
 			console.log(error);
@@ -42,7 +75,6 @@ export default function Signin() {
 	};
 
 	return (
-		// <div>
 		<Box
 			sx={{
 				display: 'flex',
@@ -67,16 +99,7 @@ export default function Signin() {
 						style={{
 							display: 'flex',
 							flexDirection: 'column',
-							// alignItems: 'center',
 						}}>
-						{/* <label>Email</label> */}
-						{/* <input
-							type='email'
-							value={email}
-							onChange={(e) =>
-								setEmail(e.target.value)
-							}
-						/> */}
 						<TextField
 							id='outlined-basic'
 							label='Email'
@@ -90,14 +113,7 @@ export default function Signin() {
 								backgroundColor: 'White',
 							}}
 						/>
-						{/* <label>Password</label> */}
-						{/* <input
-							type='password'
-							value={password}
-							onChange={(e) =>
-								setPassword(e.target.value)
-							}
-						/> */}
+
 						<TextField
 							id='outlined-password-input'
 							label='Password'
@@ -133,7 +149,15 @@ export default function Signin() {
 					</div>
 				</form>
 			</Paper>
+			<div>
+				<Snackbar
+					open={open}
+					autoHideDuration={6000}
+					onClose={handleClose}
+					message='Username/Password is incorrect'
+					action={action}
+				/>
+			</div>
 		</Box>
-		// </div>
 	);
 }
