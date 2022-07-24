@@ -70,7 +70,8 @@ export default function Blogs() {
 									marginRight: '5px',
 									width: 275,
 									// width: '100%',
-									height: 300,
+									minHeight: 300,
+									height: 'auto',
 									backgroundColor: '#24ACD5',
 								}}>
 								<CardContent
@@ -96,12 +97,13 @@ export default function Blogs() {
 										sx={{
 											wordWrap: 'break-word',
 										}}>
-										{/* <div
-										style={{
-											wordWrap: 'break-word',
-										}}> */}
-										{blog.body}
-										{/* </div> */}
+										<div
+											style={{
+												overflow: 'hidden',
+												overflowY: 'scroll',
+											}}>
+											{blog.body}
+										</div>
 									</Typography>
 								</CardContent>
 							</Card>
